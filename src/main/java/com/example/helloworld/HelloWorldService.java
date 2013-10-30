@@ -2,8 +2,8 @@ package com.example.helloworld;
 
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.HelloWorldResource;
-
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 
 public class HelloWorldService extends Service<HelloWorldConfiguration> {
@@ -11,13 +11,13 @@ public class HelloWorldService extends Service<HelloWorldConfiguration> {
         new HelloWorldService().run(args);
     }
 
-    private HelloWorldService() {
-        super("hello-world");
+    @Override
+    public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
+        bootstrap.setName("hello-world");
     }
 
     @Override
-    protected void initialize(HelloWorldConfiguration configuration,
-                              Environment environment) {
+    public void run(HelloWorldConfiguration configuration, Environment environment) throws Exception {
         final String template = configuration.getTemplate();
         final String defaultName = configuration.getDefaultName();
         environment.addResource(new HelloWorldResource(template, defaultName));

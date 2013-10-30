@@ -5,12 +5,12 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.yammer.dropwizard', name: 'dropwizard-core', version: '0.5.1'
+    compile group: 'com.yammer.dropwizard', name: 'dropwizard-core', version: '0.6.2'
 }
 
 apply plugin: 'application'
 
-mainClassName = 'com.example.helloworld.HelloWorldService'
+mainClassName = 'com.spike.helloworld.HelloWorldService'
 
 run {
     args 'server', 'hello-world.yml'
